@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+  <title>Clase 4 - Javascript</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Registro de persona</h1>
+    <form>
+      Nombre: <br>
+      <input type="text" name="nombre" id="txtNombre"><br>
+      Apellido: <br>
+      <input type="text" name="Apellido" id="txtApellido"><br>
+      <br>
+
+      Sexo: <br>
+      <input type="radio" name="Sexo" value="masculino">Masculino <br>
+      <input type="radio" name="Sexo" value="femenino">Femenino <br>
+      <input type="radio" name="Sexo" value="otro">Otro
+
+
+      <br>
+
+      <br>
+      Deporte: <br>
+      <select name="deporte" id="deporte">
+        <option value="tenis">Tenis</option>
+        <option value="futbol">Futbol</option>
+        <option value="rugby">Rugby</option>
+        <option value="padel">Padel</option>
+      </select>
+
+      <br>
+
+      <br>
+      Descripcion de usuario:<br>
+      <textarea name="descripcion" rows="10" cols="60" id="txtDescripcion" onchange="contcarac()"></textarea>
+      <p id="contador"></p>
+      <br>
+
+      <br>
+      <button type="button" onclick="validarForm();">Validar</button>
+      <br>
+      <br>
+      <button type="button"  onkeyup="guardarDatos()">GUARDAR</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+
+  <script>
+      function validarForm(){
+        var nombre = document.getElementById('txtNombre');
+       if (nombre.value === ''){
+           Swal.fire("se encuentra vacio nombre");
+           return false
+       }
+        var apellido = document.getElementById('txtApellido');
+        if (apellido.value === ''){
+            alert("se encuentra vacio apellido");
+            return false
+        }
+        var desc = document.getElementById('txtDescripcion');
+        if (desc.value === ''){
+            alert("esta vacio descripcion");
+            return false;
+        }
+        else if (desc.value.length > 100){
+            alert("maximo 100 caracteres");
+            return false;
+        }
+        var rbtgenero = document.getElementsByName('Sexo');
+        var algunaseleccion = false;
+        for (var i = 0;i<rbtgenero.length;i++){
+            if (rbtgenero[i].checked){
+                var algunaseleccion = true;
+                break;
+            }
+        }
+        if (algunaseleccion == false){
+            alert("no selecciono ningun genero");
+            return false;
+        }
+        return true;
+      }
+
+      function guardarDatos(){
+        if (validarForm() == true){
+            alert("guardando datos")
+        }
+        else {
+            alert("alguna validacion no se completo");
+        }
+      }
+
+      function contcarac(){
+          document.getElementById('contador').innerHTML 
+      }
+      // === no solo compara el valor sino tambien el tipo de dato
+
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+//falta validar el select 
+//mostrar el nro de caracteres
